@@ -9,10 +9,9 @@ def verify(entry, alphabet, initialState, actualState, finalState, states, trans
     if char in alphabet and actualState in states:
       #w.i.p
       if actualState in finalState and index == highIndex:
-        print(actualState, ", ", char)
-        print(transitions[previousState, actualState])
         return True
       elif (actualState, actualState) in transitions and char == transitions[actualState, actualState][2]:
+          print(f"{actualState} -> {actualState}, {char}")
           continue
       elif (actualState, previousState) in transitions:
         if actualState in transitions[actualState, previousState] and char == transitions[actualState, previousState][2]:
@@ -21,6 +20,7 @@ def verify(entry, alphabet, initialState, actualState, finalState, states, trans
           actualState = tempPrevious
           nextState = actualState[0] + str(int(actualState[1]) + 1)
           print(f"{previousState} -> {actualState}, {char}")
+          continue
       elif actualState in transitions[actualState, nextState] and char == transitions[actualState, nextState][2]:
         previousState = actualState
         actualState = nextState
