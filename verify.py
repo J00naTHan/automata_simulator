@@ -1,27 +1,31 @@
 def verify(entry, alphabet, initialState, actualState, finalState, states, transitions):
   nextState = actualState[0] + str(int(actualState[1]) + 1)
   previousState = actualState
-  for char in entry:
-    if char in alphabet:
+  
+  for index, _char in enumerate(entry):
+    highIndex = index
+    
+  for index, char in enumerate(entry):
+    if char in alphabet and actualState in states:
       #w.i.p
-      if (actualState, actualState) in transitions and actualState in transitions[actualState, actualState] and char == transitions[actualState, actualState][2]:
-        if actualState in finalState and char == entry[-1]:
-          return True
-        else:
+      if actualState in finalState and index == highIndex:
+        print(actualState, ", ", char)
+        print(transitions[previousState, actualState])
+        return True
+      elif (actualState, actualState) in transitions and char == transitions[actualState, actualState][2]:
           continue
       elif (actualState, previousState) in transitions:
         if actualState in transitions[actualState, previousState] and char == transitions[actualState, previousState][2]:
-          if actualState in finalState and char == entry[-1]:
-            return True
+          tempPrevious = previousState
           previousState = actualState
-          actualState = previousState
+          actualState = tempPrevious
           nextState = actualState[0] + str(int(actualState[1]) + 1)
+          print(f"{previousState} -> {actualState}, {char}")
       elif actualState in transitions[actualState, nextState] and char == transitions[actualState, nextState][2]:
-        if actualState in finalState and char == entry[-1]:
-          return True
         previousState = actualState
         actualState = nextState
-        if nextState[0] + str(int(nextState[1]) + 1) in finalState:
+        print(f"{previousState} -> {actualState}, {char}")
+        if nextState[0] + str(int(nextState[1]) + 1) in states:
           nextState = nextState[0] + str(int(nextState[1]) + 1)
           continue
         else:
