@@ -14,7 +14,7 @@ entry = input("Insira a palavra para a verificação: ")
 verification = verify(entry, alphabet, initialState, actualState, finalState, states, transitions)
 
 if verification is True:
-  print("True")
+  print("Aceita")
 else:
-  print("False")
+  print("Rejeita")
   
