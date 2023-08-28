@@ -7,7 +7,7 @@ def verify(entry, alphabet, initialState, actualState, finalState, states, trans
     
   for index, char in enumerate(entry):
     if char in alphabet and actualState in states:
-      #w.i.p
+      #FIXME: corrigir lógica
       if actualState in finalState and index == highIndex:
         return True
       elif (actualState, actualState) in transitions and char == transitions[actualState, actualState][2]:
@@ -32,6 +32,6 @@ def verify(entry, alphabet, initialState, actualState, finalState, states, trans
           continue
       else:
         return False
-      #end w.i.p
+      #FIXME end
     else:
       return False
